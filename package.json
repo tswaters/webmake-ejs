@@ -1,6 +1,6 @@
 {
   "name": "webmake-ejs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Require EJS files with Webmake",
   "author": "Tyler Waters <tyler.waters@gmail.com>",
   "peerDependencies": {
