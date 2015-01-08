@@ -35,6 +35,6 @@ exports.extension = ['ejs'];
 exports.compile = function (src, info) {
   var template = ejs.compile(src, {'client': true});
   return {
-    'code': 'module.exports = function (opts) { return (' + template.toString() + ')(opts);};'
+    'code': 'module.exports = function (opts) { return (' + template.toString() + ')(opts || {});};'
   };
 };
