@@ -9,5 +9,8 @@
   "peerDependencies": {
     "webmake": "~0.3.19"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^2.0.8"
+  },
 }

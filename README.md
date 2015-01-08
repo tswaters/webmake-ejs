@@ -41,20 +41,6 @@ webmake-ejs can be used with any other Webmake extension, e.g.:
 <% } %>
 ```
 
-### index.html
-Ensure you include a script reference to `ejs.js` or `ejs.min.js`!
-
-```html
-<!DOCTYPE html>
-<html>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<script src="node_modules/ejs/ejs.js"></script>
-<body>
-<script src="bundle.js"></script>
-</body>
-</html>
-```
-
 ### app.js
 
 ```javascript

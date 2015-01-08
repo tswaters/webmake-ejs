@@ -1,6 +1,15 @@
 'use strict';
 
 /**
+ * @module webmake-ejs
+ * @requires ejs
+ * @requires webmake
+ * @author Tyler Waters
+ **/
+
+var ejs = require('ejs');
+
+/**
  * @typedef {object} webmake-extension-return
  * @description the object that webmake is expecting
  * @property {string} code code rendered in module block.
@@ -24,12 +33,8 @@ exports.extension = ['ejs'];
  * @returns {webmake-extension-return} value returned to webmake.
  */
 exports.compile = function (src, info) {
+  var template = ejs.compile(src, {'client': true});
   return {
-    'code': [
-      'var template = ejs.compile(' + JSON.stringify(src) + ');',
-      'module.exports = function (opts) {',
-      '  return template(opts);',
-      '};'
-    ].join('\n')
+    'code': 'module.exports = function (opts) { return (' + template.toString() + ')(opts);};'
   };
 };
