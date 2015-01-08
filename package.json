@@ -10,7 +10,18 @@
     "webmake": "~0.3.19"
   },
   "license": "MIT",
+  "devDependencies": {
+    "async": "^0.9.0",
+    "chai": "^1.10.0",
+    "mocha": "^2.1.0"
+  },
   "dependencies": {
     "ejs": "^2.0.8"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
   },
 }
