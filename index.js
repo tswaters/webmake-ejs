@@ -3,11 +3,13 @@
 /**
  * @module webmake-ejs
  * @requires ejs
+ * @requires deferred
  * @requires webmake
  * @author Tyler Waters
  **/
 
 var ejs = require('ejs');
+var deferred = require('deferred');
 
 /**
  * @typedef {object} webmake-extension-return
@@ -33,8 +35,23 @@ exports.extension = ['ejs'];
  * @returns {webmake-extension-return} value returned to webmake.
  */
 exports.compile = function (src, info) {
-  var template = ejs.compile(src, {'client': true});
   return {
-    'code': 'module.exports = function (opts) { return (' + template.toString() + ')(opts || {});};'
+    'code': compileEjs(src)
   };
 };
+
+function compileEjs (src) {
+  var def = deferred();
+  try {
+    var template = ejs.compile(src, {'client': true});
+    def.resolve([
+      'module.exports = function (opts) {',
+      ' return (' + template.toString() + ')(opts || {});',
+      '};'
+    ].join('\n'));
+  }
+  catch (e) {
+    def.reject(e);
+  }
+  return def.promise;
+}
